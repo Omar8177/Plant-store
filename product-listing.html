@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing - Plant Store</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Plant Store</h1>
+        <a href="shopping-cart.html" id="cart-icon">🛒 0</a>
+    </header>
+
+    <section class="product-listing">
+        <h2>Our Products</h2>
+        <div class="product" id="product1">
+            <img src="images/plant1.jpg" alt="Plant 1">
+            <p>Plant 1</p>
+            <p>$10.00</p>
+            <button onclick="addToCart('Plant 1', 10.00)">Add to Cart</button>
+        </div>
+        <div class="product" id="product2">
+            <img src="images/plant2.jpg" alt="Plant 2">
+            <p>Plant 2</p>
+            <p>$15.00</p>
+            <button onclick="addToCart('Plant 2', 15.00)">Add to Cart</button>
+        </div>
+        <!-- Add more plants as needed -->
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Plant Store</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
