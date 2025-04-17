@@ -3,225 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Store</title>
-
-    <!-- All CSS goes here -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .landing {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .landing-img {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .product-listing, .shopping-cart {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
-
-        .product, .cart-item {
-            background-color: white;
-            padding: 20px;
-            margin: 10px;
-            text-align: center;
-            width: 200px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .product img, .cart-item img {
-            width: 100%;
-            max-width: 150px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:disabled {
-            background-color: #ddd;
-            cursor: not-allowed;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        #cart-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 20px;
-        }
-
-        #continue-shopping {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-        .cart-actions button {
-            margin: 10px 5px;
-        }
-
-        .cart-item p {
-            margin: 5px 0;
-        }
-    </style>
+    <title>GreenHaven Plants</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Landing Page -->
     <header>
-        <h1>Plant Store</h1>
+        <div class="logo">GreenHaven</div>
+        <div class="cart">
+            <span id="cart-icon">🛒</span>
+            <span id="cart-count">0</span>
+        </div>
     </header>
 
-    <section class="landing">
-        <img src="https://via.placeholder.com/600x300.png?text=Plants+for+Sale" alt="Plants for sale" class="landing-img">
-        <p>Welcome to the best place to buy plants for your home and garden!</p>
-        <button onclick="showPage('product-listing')">Get Started</button>
-    </section>
-
-    <!-- Product Listing Page -->
-    <div id="product-listing" style="display:none;">
-        <header>
-            <h1>Plant Store</h1>
-            <a href="#" id="cart-icon">🛒 0</a>
-        </header>
-
-        <section class="product-listing">
-            <div class="product" id="product1">
-                <img src="https://via.placeholder.com/150x150.png?text=Plant+1" alt="Plant 1">
-                <p>Plant 1</p>
-                <p>$10.00</p>
-                <button onclick="addToCart('Plant 1', 10.00, this)">Add to Cart</button>
-            </div>
-            <div class="product" id="product2">
-                <img src="https://via.placeholder.com/150x150.png?text=Plant+2" alt="Plant 2">
-                <p>Plant 2</p>
-                <p>$15.00</p>
-                <button onclick="addToCart('Plant 2', 15.00, this)">Add to Cart</button>
-            </div>
+    <main>
+        <section id="landing">
+            <h1>Welcome to GreenHaven</h1>
+            <p>Discover our wide selection of plants!</p>
+            <button id="get-started">Get Started</button>
         </section>
 
-        <footer>
-            <p>&copy; 2025 Plant Store</p>
-        </footer>
-    </div>
+        <section id="products">
+            <!-- Products will be dynamically added here -->
+        </section>
 
-    <!-- Shopping Cart Page -->
-    <div id="shopping-cart" style="display:none;">
-        <header>
-            <h1>Plant Store</h1>
-            <a href="#" id="continue-shopping">Continue Shopping</a>
-        </header>
-
-        <section class="shopping-cart">
+        <section id="cart">
             <h2>Your Cart</h2>
             <div id="cart-items">
-                <!-- Cart items will be dynamically inserted here -->
+                <!-- Cart items will be dynamically added here -->
             </div>
-            <div class="cart-total">
-                <p>Total: $<span id="total-price">0.00</span></p>
-            </div>
-
-            <div class="cart-actions">
-                <button id="checkout" disabled>Checkout (Coming Soon)</button>
-                <button onclick="showPage('product-listing')">Continue Shopping</button>
-            </div>
+            <div id="cart-total">Total: $0.00</div>
+            <button id="continue-shopping">Continue Shopping</button>
+            <button id="checkout">Checkout</button>
         </section>
+    </main>
 
-        <footer>
-            <p>&copy; 2025 Plant Store</p>
-        </footer>
+    <div id="modal">
+        <div id="modal-content">Coming Soon!</div>
     </div>
 
-    <!-- JavaScript -->
-    <script>
-        let cart = [];
-
-        // Function to navigate between pages
-        function showPage(pageId) {
-            document.getElementById("product-listing").style.display = "none";
-            document.getElementById("shopping-cart").style.display = "none";
-            if (pageId) document.getElementById(pageId).style.display = "block";
-        }
-
-        // Function to add items to the cart
-        function addToCart(plant, price, button) {
-            // Add item to the cart array
-            cart.push({ plant, price });
-
-            // Disable the button after adding
-            button.disabled = true;
-
-            // Update cart icon with total items
-            document.getElementById("cart-icon").textContent = `🛒 ${cart.length}`;
-
-            // Update the cart page
-            updateCart();
-        }
-
-        // Function to update the shopping cart page
-        function updateCart() {
-            const cartItemsContainer = document.getElementById("cart-items");
-            cartItemsContainer.innerHTML = ""; // Clear previous items
-            let total = 0;
-
-            cart.forEach(item => {
-                const cartItem = document.createElement("div");
-                cartItem.className = "cart-item";
-                cartItem.innerHTML = `<p>${item.plant} - $${item.price}</p>`;
-                cartItemsContainer.appendChild(cartItem);
-                total += item.price;
-            });
-
-            // Update the total price
-            document.getElementById("total-price").textContent = total.toFixed(2);
-        }
-
-        // Initialize the first page (Landing)
-        showPage('landing');
-
-        // Handle page switching
-        if (window.location.href.includes("product-listing.html")) {
-            showPage('product-listing');
-        } else if (window.location.href.includes("shopping-cart.html")) {
-            showPage('shopping-cart');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
